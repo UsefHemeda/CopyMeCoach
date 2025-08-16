@@ -8,7 +8,7 @@ import os
 load_dotenv()
 
 #intialize flask
-app = Flask(__name__, template_folder=os.path.join("..", "frontend", "templates"), static_folder=os.path.join("..", "frontend"))
+app = Flask(__name__)
 
 # Create an OpenAI client with your API key
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
