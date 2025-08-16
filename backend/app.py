@@ -50,3 +50,6 @@ def analyze():
             {"role": "user", "content": student_text}
         ]
     )
+
+if __name__ == "__main__":
+    app.run(debug=True)
