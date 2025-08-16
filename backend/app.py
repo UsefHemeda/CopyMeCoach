@@ -4,11 +4,6 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-<<<<<<< HEAD
-load_dotenv()
-=======
-load_dotenv() # <-- reads .env and loads variables into the environment
->>>>>>> f90ae11fc1d0a0fe394983bb9b3d8dc3436fde9f
 
 app = Flask(
     __name__,
