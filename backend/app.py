@@ -4,7 +4,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv() # <-- reads .env and loads variables into the environment
 
 app = Flask(
     __name__,
@@ -43,5 +43,3 @@ def analyze():
             {"role": "user", "content": student_text}
         ]
     )
-
-    return jsonify({"response": response.choices[0].message.content})
