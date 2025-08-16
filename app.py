@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request, jsonify, render_template
+from flask import Flask, redirect, request, jsonify, render_template, flash, url_for
 from models import db, User
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -27,12 +27,23 @@ with app.app_context():
 def home():
     return render_template("home.html")
 
-@app.route("/register", methods=["POST"])
+@app.route("/register", methods=["POST", "GET"])
 def register():
-    data = request.json
-    name = data.get("name")
-    email = data.get("email")
-    age = data.get("age")
+    if request.form == "POST":
+        data = request.form
+        name = data.get("name")
+        email = data.get("email")
+        age = data.get("age")
+        password = data.get("password")
+
+        if User.query.filter_by(email = email).first():
+            flash("Email alraedy registered!")
+            return redirect(url_for("signup"))
+        
+        new_user = User(name = name, email = email, age = age)
+        new_user.set_password(password)
+        db.session.add(new_user)
+        db.session.commit()
 
 @app.route("/login")
 def login():
