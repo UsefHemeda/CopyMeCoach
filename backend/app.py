@@ -35,6 +35,10 @@ def register():
     email = data.get("email")
     age = data.get("age")
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
 @app.route("/analyze", methods=["POST"])
 def analyze():
     data = request.json
