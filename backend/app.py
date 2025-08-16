@@ -4,7 +4,10 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
+# Load environment variables from .env file
+load_dotenv()
 
+#intialize flask
 app = Flask(__name__, template_folder=os.path.join("..", "frontend", "templates"), static_folder=os.path.join("..", "frontend"))
 
 # Create an OpenAI client with your API key
