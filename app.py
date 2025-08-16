@@ -4,15 +4,14 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
-load_dotenv()
 
-#intialize flask
+load_dotenv() # Load environment variables from .env file
+
+
 app = Flask(__name__)
 
 # Create an OpenAI client with your API key
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 
 # Database Creation
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///copyme.db"
