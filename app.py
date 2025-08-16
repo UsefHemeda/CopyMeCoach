@@ -38,6 +38,10 @@ def register():
 def login():
     return render_template("login.html")
 
+@app.route("/signup")
+def signup():
+    return render_template("signup.html")
+
 @app.route("/analyze", methods=["POST"])
 def analyze():
     data = request.json
