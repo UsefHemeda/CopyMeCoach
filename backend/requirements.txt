@@ -1,3 +1,8 @@
 flask
 flask-sqlalchemy
+<<<<<<< HEAD
 openai
+=======
+openai
+python-dotenv
+>>>>>>> f90ae11fc1d0a0fe394983bb9b3d8dc3436fde9f
