@@ -52,7 +52,7 @@ def login():
         password = request.form.get("password")
 
         user = User.query.filter_by(email = email).first()
-
+        
 
 
 @app.route("/signup")
