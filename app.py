@@ -29,7 +29,7 @@ def home():
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
-    if request.form == "POST":
+    if request.method == "POST":
         data = request.form
         name = data.get("name")
         email = data.get("email")
@@ -45,9 +45,15 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-@app.route("/login")
+@app.route("/login", methods=["POST","GET"])
 def login():
-    return render_template("login.html")
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        user = User.query.filter_by(email = email).first()
+
+
 
 @app.route("/signup")
 def signup():
