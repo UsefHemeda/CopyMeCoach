@@ -60,13 +60,33 @@ def login():
             flash("Ivalid email or password")
             return redirect(url_for("login"))
         
-@app.route("/signup")
+@app.route("/signup", methods=["POST", "GET"])
 def signup():
+    if request.method == "POST":
+        name = request.form.get("name")
+        age = request.form.get("age")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        redirect(url_for("login"))
+
+        if User.query.filter_by(email=email).first():
+            flash("Email already registered!", "danger")
+            return redirect(url_for("signup"))
+        
+        new_user = User(name = name, age = age, email = email)
+        new_user.set_password(password)
+        
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash("Account created successfully! Please log in.", "success")
+        return redirect(url_for("login"))
+
     return render_template("signup.html")
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
-    data = request.json
+    data = request.form
     student_text = data.get("text", "")
     preferred_style = data.get("style", "casual")
     id = data.get("id", "")
