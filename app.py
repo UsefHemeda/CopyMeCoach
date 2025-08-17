@@ -52,9 +52,14 @@ def login():
         password = request.form.get("password")
 
         user = User.query.filter_by(email = email).first()
+
+        if user and user.checkpassword(password):
+            flash("Login Successfull!")
+            return redirect(url_for("home"))
+        else:
+            flash("Ivalid email or password")
+            return redirect(url_for("login"))
         
-
-
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
