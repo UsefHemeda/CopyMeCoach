@@ -84,12 +84,12 @@ def signup():
 
     return render_template("signup.html")
 
-@app.route("/analyze", methods=["POST"])
+@app.route("/analyze", methods=["POST", "GET"])
 def analyze():
-    data = request.form
-    student_text = data.get("text", "")
-    preferred_style = data.get("style", "casual")
-    id = data.get("id", "")
+    if request.method == "POST":
+        text = request.form.get("text")
+        style = request.form.get("style")
+
 
     # Call OpenAI
     response = client.chat.completions.create(
